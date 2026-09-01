@@ -1,0 +1,23 @@
+{
+  // Type-checking config for the host half (src/index.ts). Build output is
+  // produced by tsdown (tsdown.config.ts); run `tsc -p tsconfig.host.json
+  // --noEmit` as the gate.
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2024"],
+    "types": ["node"],
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    // Pragmatic relaxations: the cordis ctx surface is typed structurally.
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["src/index.ts"]
+}

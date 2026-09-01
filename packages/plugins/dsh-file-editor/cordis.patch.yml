@@ -1,0 +1,14 @@
+# dsh-file-editor bundle patch: one dual-face row.
+#
+# Host half (`lib/index.js`): a loopback-fenced static asset route serving
+# the prebuilt CodeMirror 6 bundle (built once with esbuild from the
+# workbench sources; the plugin package itself stays dependency-free).
+#
+# Browser half (`client.js`, `dsh.client` metadata): registers the "编辑"
+# conversation view tab, edits the file selected in the shared fsTree
+# service, saves through the core plugin's `/fs-tree` write RPC, and claims
+# text-file extensions in the fsTree view-preference registry so file-tree
+# clicks open them here instead of the read-only viewer.
+- insert:
+    - id: file-editor
+      name: 'dsh-file-editor'

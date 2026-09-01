@@ -1,0 +1,35 @@
+{
+    "name":  "dsh-skill-manager",
+    "version":  "0.1.0",
+    "description":  "SKILL绠＄悊鎻掍欢锛氬湪璁剧疆涓柊澧濻KILL绠＄悊鍒嗗尯锛岃嚜鍔ㄦ敹褰旸SH鍏ㄩ儴鎶€鑳斤紝鏀寔鏌ョ湅/鏂板缓/缂栬緫/鍒犻櫎",
+    "type":  "module",
+    "main":  "lib/index.js",
+    "exports":  {
+                    ".":  {
+                              "default":  "./lib/index.js"
+                          },
+                    "./client":  "./client.js",
+                    "./package.json":  "./package.json"
+                },
+    "dsh":  {
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           },
+                "client":  {
+                               "platform":  "web",
+                               "inject":  [
+                                              "@deepseek-ai/dsh-client-runtime",
+                                              "@deepseek-ai/dsh-client-locale",
+                                              "@deepseek-ai/dsh-client-connection",
+                                              "@deepseek-ai/dsh-client-ui-settings"
+                                          ]
+                           }
+            },
+    "files":  [
+                  "lib/index.js",
+                  "client.js",
+                  "cordis.patch.yml"
+              ]
+,
+  "devDependencies": { "react": "^18.2.0", "react-dom": "^18.2.0", "@types/react": "~18.3.1", "@types/react-dom": "~18.3.1", "@deepseek-ai/dsh-client-ui-primitives": "workspace:^" }
+}

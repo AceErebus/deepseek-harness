@@ -40,3 +40,17 @@ apps/web/dist/
 worktrees/
 .agents/worktrees/
 .typert-*/
+
+# ---------------------------------------------------------------------------
+# 插件目录（packages/plugins）：纳入版本控制，便于其他机器/离线编译使用。
+# 只排除 node_modules（上面已全局忽略）和 skin 的大媒体资产，其余全传。
+# ---------------------------------------------------------------------------
+# 编译产物 lib/ 全局被 lib/ 忽略，这里对插件目录白名单（保留 lib/* 与 client.js）
+!packages/plugins/*/lib/
+!packages/plugins/*/client.js
+!packages/plugins/*/client.js.map
+# dsh-erebus-skin 体积过大：排除大媒体资产（视频 / 海报 / 立绘源素材），保留源码+lib+小资产
+packages/plugins/dsh-erebus-skin/assets/liang/portrait-source-v2/
+packages/plugins/dsh-erebus-skin/assets/liang/*.mp4
+packages/plugins/dsh-erebus-skin/assets/liang/*.webm
+packages/plugins/dsh-erebus-skin/assets/liang/liang-poster.png

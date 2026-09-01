@@ -1,0 +1,15 @@
+# dsh-erebus-git bundle patch: one dual-face row.
+#
+# Host half (`lib/index.js`): a loopback-fenced `/dsh-erebus-git` shared RPC
+# channel driving the local git executable (status/diff/stage/commit/push/pull,
+# file- and hunk-level rollback, conflict resolution). No remote or write
+# beyond the repo state the host user owns.
+#
+# Browser half (`client.js`, `dsh.client` metadata): registers a Git button
+# into the file-tree explorer's `fsTree.explorer.header` list slot (declared
+# by dsh-fs-tree) and opens an IDEA-style Git management panel: multi-repo
+# switch, per-file staging + commit, push/pull, per-file and per-hunk
+# rollback, and merge-conflict resolution (ours/theirs/editor/mark-resolved).
+- insert:
+    - id: git
+      name: 'dsh-erebus-git'

@@ -1,0 +1,30 @@
+{
+  // Type-checking config for the browser half (src/client). Build output is
+  // produced by tsdown (tsdown.config.ts), which strips types without
+  // checking; run `tsc -p tsconfig.client.json --noEmit` as the gate.
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "types": [],
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    // Pragmatic relaxations: the runtime surfaces (slot props, RPC payloads,
+    // third-party script globals) are typed structurally, not exhaustively.
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "react": ["../../node_modules/.pnpm/@types+react@18.3.31/node_modules/@types/react"],
+      "react-dom": ["../../node_modules/.pnpm/@types+react-dom@18.3.7_@types+react@18.3.31/node_modules/@types/react-dom"],
+      "@deepseek-ai/dsh-client-ui-primitives": ["../../packages/client/ui-primitives/lib/types/index.d.ts"]
+    }
+  },
+  "include": ["src/client"]
+}

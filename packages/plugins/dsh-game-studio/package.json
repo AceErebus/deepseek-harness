@@ -1,0 +1,31 @@
+{
+  "name": "dsh-game-studio",
+  "version": "0.1.0",
+  "description": "游戏工作台：Cocos Creator 小游戏项目发现/代码模板/资源清单，ComfyUI 立绘生成，微信/抖音小游戏构建与开发者工具联动。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "typecheck": "tsc -p tsconfig.host.json --noEmit && tsc -p tsconfig.client.json --noEmit"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "devDependencies": { "react": "^18.2.0", "react-dom": "^18.2.0", "@types/react": "~18.3.1", "@types/react-dom": "~18.3.1", "@deepseek-ai/dsh-client-ui-primitives": "workspace:^" }
+}

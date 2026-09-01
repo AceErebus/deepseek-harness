@@ -33,6 +33,31 @@ import type { WorkspaceId, WorkspaceView } from '@deepseek-ai/dsh-api-workspace-
 import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import type { createWorkspaceViewStore } from '../stores.ts'
 
+/** Owner share of the optional sidebar file-tree hole. */
+export interface WorkspaceTreeOwnerProps {
+  /** True while the sidebar is expanded; rail state hides the tree. */
+  wide: boolean
+  /**
+   * Session selector for an occupant file tree: exposes the current session
+   * id so the occupant can resolve the opened workspace root.
+   */
+  useSessions?: (selector: (snapshot: { current: string | null }) => { current: string | null }) => { current: string | null }
+  /**
+   * Workspace selector for an occupant file tree: exposes the workspace
+   * items (incl. each workspace's directory `path`) so the occupant can
+   * auto-root the tree at the opened workspace.
+   */
+  useWorkspaces?: (selector: (state: { items: WorkspaceTreeItem[] }) => WorkspaceTreeItem[]) => WorkspaceTreeItem[]
+}
+
+/** Minimal workspace shape an occupant file tree reads to root itself. */
+export interface WorkspaceTreeItem {
+  workspaceId: string
+  path: string
+  title: string
+  sessionIds: string[]
+}
+
 /**
  * Owner share of the directory-flow holes: the complete conversation between
  * the trigger surface and the picking interaction. The occupant reads `open`
@@ -57,6 +82,12 @@ declare module '@deepseek-ai/dsh-client-ui-slots' {
     'conversation.hero.workspace.directoryFlow': { kind: 'single'; scope: 'root'; owner: DirectoryFlowOwnerProps }
     /** Directory-flow hole under the sidebar browsing region (declared by the WorkspaceBrowser entry). */
     'sidebar.workspaces.directoryFlow': { kind: 'single'; scope: 'root'; owner: DirectoryFlowOwnerProps }
+    /**
+     * Optional file-tree hole under the sidebar browsing region (declared by
+     * the WorkspaceBrowser entry). Empty when no out-of-tree explorer plugin
+     * occupies it; the owner share is the shell wide/rail fact.
+     */
+    'sidebar.workspaces.tree': { kind: 'single'; scope: 'root'; owner: WorkspaceTreeOwnerProps }
   }
 }
 
@@ -147,7 +178,7 @@ export type WorkspaceBrowserInjected = {
 /** Full browser props: shell owner share + viewing store + injected actions + the locale seat. */
 export type WorkspaceBrowserProps =
   PropsRuntime<'sidebar.workspaces'>
-  & PropsRenderSlots<'sidebar.workspaces.directoryFlow'>
+  & PropsRenderSlots<'sidebar.workspaces.directoryFlow' | 'sidebar.workspaces.tree'>
   & PropsStore<ReturnType<typeof createWorkspaceViewStore>>
   & Omit<WorkspaceBrowserInjected, 'hooks'>
   & PropsHooks<WorkspaceBrowserInjected['hooks']>

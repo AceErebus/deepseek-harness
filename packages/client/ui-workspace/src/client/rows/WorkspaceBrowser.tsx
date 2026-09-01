@@ -1265,6 +1265,8 @@ export function WorkspaceBrowser({
             ))}
       </div>
 
+      {wide && renderSlot('sidebar.workspaces.tree', { wide, useSessions, useWorkspaces })}
+
       <Modal
         open={renameTarget !== null}
         onClose={closeRename}

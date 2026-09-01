@@ -1,0 +1,46 @@
+{
+    "name":  "dsh-file-editor",
+    "version":  "0.1.0",
+    "description":  "CodeMirror 6 code editor tab for the dsh web GUI: edit and save text files, wired to the dsh-fs-tree shared fsTree service (read/write RPC + selection)",
+    "type":  "module",
+    "main":  "lib/index.js",
+    "exports":  {
+                    ".":  {
+                              "default":  "./lib/index.js"
+                          },
+                    "./client":  "./client.js",
+                    "./package.json":  "./package.json"
+                },
+    "files":  [
+                  "src",
+                  "lib/index.js",
+                  "client.js",
+                  "client.js.map",
+                  "cordis.patch.yml",
+                  "tsdown.config.ts",
+                  "tsconfig.client.json",
+                  "tsconfig.host.json"
+              ],
+    "scripts":  {
+                    "bundle":  "tsdown",
+                    "typecheck":  "tsc -p tsconfig.host.json --noEmit \u0026\u0026 tsc -p tsconfig.client.json --noEmit"
+                },
+    "license":  "MIT",
+    "dsh":  {
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           },
+                "client":  {
+                               "platform":  "web",
+                               "inject":  [
+                                              "dsh-fs-tree",
+                                              "@deepseek-ai/dsh-client-runtime",
+                                              "@deepseek-ai/dsh-client-locale",
+                                              "@deepseek-ai/dsh-client-connection",
+                                              "@deepseek-ai/dsh-client-ui-conversation"
+                                          ]
+                           }
+            }
+,
+  "devDependencies": { "react": "^18.2.0", "react-dom": "^18.2.0", "@types/react": "~18.3.1", "@types/react-dom": "~18.3.1", "@deepseek-ai/dsh-client-ui-primitives": "workspace:^" }
+}

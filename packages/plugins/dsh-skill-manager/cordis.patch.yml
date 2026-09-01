@@ -1,0 +1,16 @@
+# dsh-skill-manager bundle patch: one dual-face row.
+#
+# Host half (`lib/index.js`): a plain `{ apply, inject }` cordis plugin that
+# mounts the loopback-fenced `/skill-manage` RPC channel over the live skill
+# registry (`skills` service). The catalog is read fresh from the registry on
+# every call, so skills added to any scanned root (project .dsh/.agents,
+# ~/.dsh/skills, ~/.agents/skills, custom dirs, bundled) show up
+# automatically — no restart, no rescan list to maintain.
+#
+# Browser half (`client.js`, `dsh.client` metadata): registers the
+# "SKILL 管理" section into the settings panel's `settings.section` slot
+# (the gear button in the sidebar), listing every skill with view/create/
+# edit/delete actions.
+- insert:
+    - id: skill-manager
+      name: 'dsh-skill-manager'

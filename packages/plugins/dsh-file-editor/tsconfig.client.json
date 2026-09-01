@@ -1,0 +1,28 @@
+{
+  // Type-checking config for the browser half (src/client). Build output is
+  // produced by tsdown (tsdown.config.ts), which strips types without
+  // checking; run `tsc -p tsconfig.client.json --noEmit` as the gate.
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "types": [],
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    // Pragmatic relaxations: the runtime surfaces (slot props, RPC payloads,
+    // the vendored CodeMirror bundle) are typed structurally, not exhaustively.
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "react": ["../../node_modules/.pnpm/@types+react@18.3.31/node_modules/@types/react"]
+    }
+  },
+  "include": ["src/client"]
+}

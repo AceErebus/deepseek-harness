@@ -1,0 +1,4 @@
+﻿# dsh-erebus-skin bundle patch: inserts the plugin row into the web profile.
+- insert:
+    - id: erebus-skin
+      name: 'dsh-erebus-skin'

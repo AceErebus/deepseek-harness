@@ -1,0 +1,4 @@
+# dsh-game-studio bundle patch: inserts the game workbench into the web profile.
+- insert:
+    - id: game-studio
+      name: 'dsh-game-studio'

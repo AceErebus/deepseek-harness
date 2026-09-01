@@ -1,0 +1,35 @@
+{
+    "name":  "dsh-erebus-skin",
+    "version":  "0.1.0",
+    "description":  "Erebus skin plugin: one bottom slider switches skins on a numeric axis (0-30 plus one negative integer tick per extra skin). Add a skin by appending one entry to the skin table.",
+    "type":  "module",
+    "main":  "./src/index.js",
+    "exports":  {
+                    ".":  "./src/index.js",
+                    "./client":  "./lib/client.js",
+                    "./package.json":  "./package.json"
+                },
+    "scripts":  {
+                    "build":  "node ./scripts/build-client.mjs"
+                },
+    "devDependencies": { "esbuild": "^0.25.12", "jsdom": "^29.1.1", "react": "^18.2.0", "react-dom": "^18.2.0", "@types/react": "~18.3.1", "@types/react-dom": "~18.3.1", "@deepseek-ai/dsh-client-ui-primitives": "workspace:^" },
+    "files":  [
+                  "src",
+                  "lib/client.js",
+                  "assets",
+                  "cordis.patch.yml"
+              ],
+    "dsh":  {
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           },
+                "client":  {
+                               "platform":  "web",
+                               "inject":  [
+                                              "@deepseek-ai/dsh-client-runtime",
+                                              "@deepseek-ai/dsh-client-ui-conversation",
+                                              "@deepseek-ai/dsh-client-ui-theme"
+                                          ]
+                           }
+            }
+}

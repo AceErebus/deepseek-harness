@@ -1,0 +1,45 @@
+{
+    "name":  "dsh-fs-tree",
+    "version":  "0.1.0",
+    "description":  "Workspace file tree plugin for the dsh web GUI: an inline sidebar explorer over the opened workspace plus a file viewer/editor tab, wired through a loopback-fenced host RPC channel",
+    "type":  "module",
+    "main":  "lib/index.js",
+    "exports":  {
+                    ".":  {
+                              "default":  "./lib/index.js"
+                          },
+                    "./client":  "./client.js",
+                    "./package.json":  "./package.json"
+                },
+    "files":  [
+                  "src",
+                  "lib/index.js",
+                  "client.js",
+                  "client.js.map",
+                  "cordis.patch.yml",
+                  "tsdown.config.ts",
+                  "tsconfig.client.json",
+                  "tsconfig.host.json"
+              ],
+    "scripts":  {
+                    "bundle":  "tsdown",
+                    "typecheck":  "tsc -p tsconfig.host.json --noEmit \u0026\u0026 tsc -p tsconfig.client.json --noEmit"
+                },
+    "license":  "MIT",
+    "dsh":  {
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           },
+                "client":  {
+                               "platform":  "web",
+                               "inject":  [
+                                              "@deepseek-ai/dsh-client-runtime",
+                                              "@deepseek-ai/dsh-client-locale",
+                                              "@deepseek-ai/dsh-client-connection",
+                                              "@deepseek-ai/dsh-client-ui-workspace"
+                                          ]
+                           }
+            }
+,
+  "devDependencies": { "react": "^18.2.0", "react-dom": "^18.2.0", "@types/react": "~18.3.1", "@types/react-dom": "~18.3.1", "@deepseek-ai/dsh-client-ui-primitives": "workspace:^" }
+}

@@ -1,0 +1,12 @@
+# dsh-fs-tree bundle patch: one dual-face row.
+#
+# Host half (`lib/index.js`): a plain `{ apply, inject }` cordis plugin that
+# mounts the `/fs-tree` shared RPC channel through the Connection service
+# (`authority: "loopback"`, so the DNS-rebinding trust fence applies). It
+# serves `list` (one directory level) and `home` (the host account's home).
+#
+# Browser half (`client.js`, `dsh.client` metadata): registered into the
+# sidebar's `sidebar.footer.action` slot, opening a lazy file-tree panel.
+- insert:
+    - id: fs-tree
+      name: 'dsh-fs-tree'
